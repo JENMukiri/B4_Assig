@@ -1,17 +1,53 @@
-# B4_Assig
+---
+title: "STAT_545B_Assingment_B4"
+author: "Jessica Mukiri"
+date: "06/12/2021"
+output: github_document
+---
 
-Option A – Strings and functional programming in R
-Complete 2 of the following 3 exercises using concepts and tools covered in class (i.e. stringr, purrr, regex, tidyverse, etc.)
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
-Setup: Make a new repository if you’re going with this option, by clicking the link provided to you on canvas. Name the repository as you wish.
+## Assignment B4: Option A
 
-Exercise 1 (37.5 points)
-Take a Jane Austen book contained in the janeaustenr package, or another book from some other source, such as one of the many freely available books from Project Gutenberg (be sure to indicate where you got the book from). Make a plot of the most common words in the book, removing “stop words” of your choosing (words like “the”, “a”, etc.) or stopwords from a pre-defined source, like the stopwords package or tidytext::stop_words.
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-If you use any resources for helping you remove stopwords, or some other resource besides the janeaustenr R package for accessing your book, please indicate the source. We aren’t requiring any formal citation styles, just make sure you name the source and link to it.
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 
-Exercise 3 (37.5 points)
+## Exercise 1 (37.5 points)
+
+Take a Jane Austen book contained in the janeaustenr package, 
+
+Make a plot of the most common words in the book, removing “stop words” of your choosing (words like “the”, “a”, etc.) or stopwords from a pre-defined source, like the stopwords package or tidytext::stop_words.
+
+If you use any resources for helping you remove stopwords. name the source and link to it.
+
+```{r}
+#packages needed
+library(janeaustenr)
+library(tidyverse)
+library(ggplot2)
+library(stopwords)
+
+```
+
+
+```{r}
+#cleaning the data
+glimpse(stopwords::data_stopwords_stopwordsiso$en)
+
+```
+
+
+```{r}
+#plotting the data
+```
+
+
+# Exercise 3 (37.5 points)
+
 For this exercise, you’ll be evaluating a model that’s fit separately for each group in some dataset. You should fit these models with some question in mind.
 
 Examples (do not use these examples):
@@ -26,8 +62,10 @@ Print out this intermediate tibble for inspection (perhaps others as well, if it
 Unnest the resulting calculations, and print your final tibble to screen. Make sure your tibble makes sense: column names are appropriate, and you’ve gotten rid of columns that no longer make sense.
 Produce a plot communicating something about the result.
 Walk a reader through this analysis by providing an explanation as to what’s going on (in terms of a data analysis question and results, not necessarily in terms of what’s happening in the code).
-Grading is as follows:
 
-5 points: the “story” behind your data analysis.
-5 points: the plot.
-15 points: the calculations.
+
+
+```{r}
+
+```
+
