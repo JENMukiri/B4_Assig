@@ -30,14 +30,25 @@ library(janeaustenr)
 library(tidyverse)
 library(ggplot2)
 library(stopwords)
+library(tm)
 
 ```
 
 
 ```{r}
 #cleaning the data
-glimpse(stopwords::data_stopwords_stopwordsiso$en)
+#glimpse(stopwords::data_stopwords_stopwordsiso$en)
+ #glimpse(janeaustenr::emma)
 
+emma <-as_tibble(janeaustenr::emma)
+
+emma %>% mutate(observation = 1:n()) %>% 
+  select(observation, everything()) 
+  
+  
+ emma_1 <- filter(emma ,if_any(everything(), ~ !is.na(.)))
+
+emma_1
 ```
 
 
