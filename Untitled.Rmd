@@ -31,30 +31,15 @@ library(tidyverse)
 library(ggplot2)
 library(stopwords)
 library(tm)
-
+library(plotly)
+library(qdap)
+library(webshot)
 ```
 
 
-```{r}
-#cleaning the data
-#glimpse(stopwords::data_stopwords_stopwordsiso$en)
- #glimpse(janeaustenr::emma)
-
-emma <-as_tibble(janeaustenr::emma)
-
-emma %>% mutate(observation = 1:n()) %>% 
-  select(observation, everything()) 
-  
-  
- emma_1 <- filter(emma ,if_any(everything(), ~ !is.na(.)))
-
-emma_1
-```
 
 
-```{r}
-#plotting the data
-```
+
 
 
 # Exercise 3 (37.5 points)
@@ -77,6 +62,55 @@ Walk a reader through this analysis by providing an explanation as to what’s g
 
 
 ```{r}
+emma1 <- freq_terms( janeaustenr::emma,10, at.least=5, tm::stopwords("english"))%>%  mutate( book = "emma")           
+
+pride1 <- freq_terms( janeaustenr::prideprejudice,10, at.least=5, tm::stopwords("english"))%>%  mutate( book = "pride")
+
+mans1 <-  freq_terms( janeaustenr::mansfieldpark,10, at.least=5, tm::stopwords("english"))%>%  mutate( book = "mans")
+
+sense1 <-  freq_terms( janeaustenr::sensesensibility,10, at.least=5, tm::stopwords("english"))%>%  mutate( book = "sense")
+
+pride1 <- freq_terms( janeaustenr::prideprejudice,10, at.least=5, tm::stopwords("english"))%>%  mutate( book = "pride")
+
+pers1 <- freq_terms( janeaustenr::persuasion,10, at.least=5, tm::stopwords("english"))%>%  mutate( book = "persuasion")
+
+
+austen1 <- bind_rows(emma1,pride1,mans1,sense1,pride1,pers1)
+
+
+austen1 <- as_tibble(austen1)
+
+
+
+bubplot <- ggplot(austen1, aes(FREQ,WORD,fill= book))+
+                 geom_point(aes(size = FREQ), pch = 21)+
+                 scale_size_continuous(range = c(1,20))+
+                 theme_classic()
+
+bubplot <- ggplotly(bubplot)
+
+bubplot
+```
+
+```{r}
+
+#circlepacker 
+
+library(hpackedbubble)
+
+hpackedbubble(austen1$book, austen1$WORD, austen1$FREQ,
+              title = "Common words in Jane Austens books",
+              pointFormat = "<b>{point.name}:</b> {point.y} words<sub>",
+              dataLabelsFilter = 100,
+              packedbubbleMinSize = "50%",
+              packedbubbleMaxSize = "300%",
+              theme = "sunset",
+              packedbubbleZMin = 0,
+              packedbubbleZmax = 10000, split = 1,
+              gravitational = 0.02,
+              parentNodeLimit = 1,
+              dragBetweenSeries = 0,
+              width = "100%")
 
 ```
 
