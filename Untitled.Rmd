@@ -2,7 +2,7 @@
 title: "STAT_545B_Assingment_B4"
 author: "Jessica Mukiri"
 date: "06/12/2021"
-output: github_document
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
